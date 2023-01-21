@@ -1,4 +1,3 @@
-from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -78,7 +77,6 @@ navegador.find_element(By.XPATH, '//*[@id="aspnetForm"]/div[4]/div/div/table/tbo
 navegador.find_element(By.XPATH, '//*[@id="te-c-main-countries"]/div/div[2]/div[1]/a').click()
 # selecionar EUA
 navegador.find_element(By.XPATH, '//*[@id="te-c-all"]/ul[4]/li[27]/input').click()
-sleep(1)
 # save
 element = navegador.find_element(By.XPATH, "//*[@id='te-c-main-countries']/div/div[2]/div[3]/a")
 actions = ActionChains(navegador)  # Move o cursor do mouse até o elemento
@@ -124,7 +122,6 @@ navegador_labour.find_element(By.XPATH, '//*[@id="aspnetForm"]/div[4]/div/div/ta
 navegador_labour.find_element(By.XPATH, '//*[@id="te-c-main-countries"]/div/div[2]/div[1]/a').click()
 # selecionar EUA
 navegador_labour.find_element(By.XPATH, '//*[@id="te-c-all"]/ul[4]/li[27]/input').click()
-sleep(1)
 # save
 element = navegador_labour.find_element(By.XPATH, "//*[@id='te-c-main-countries']/div/div[2]/div[3]/a")
 actions = ActionChains(navegador_labour)  # Move o cursor do mouse até o elemento
