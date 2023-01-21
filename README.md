@@ -27,8 +27,6 @@ Private Sub Workbook_Open()
     'formatar initial jobless claims
     mes_anterior = ""
     dia_maior = 0
-
-
     cont = 1
     For linha_bruto = 2 To 300
         If Worksheets("Dados_brutos").Cells(linha_bruto, 1) = "Initial Jobless Claims" And Worksheets("Dados_brutos").Cells(linha_bruto, 1) <> "" Then
@@ -72,7 +70,5 @@ Private Sub Workbook_Open()
                 End If
             Next
     Next
-
-
 End Sub
 
