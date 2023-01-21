@@ -1,4 +1,5 @@
 # Web-scraping-triggers
+
 This script is a web scraping tool that is designed to extract economic indicators from the website www.tradingeconomics.com. The script is written in Python and uses the Selenium and Beautiful Soup libraries to scrape data from the website, specifically for the United States. The script also uses tkinter to create a message box, openpyxl to edit the XLSX file, os library and pyautogui to open the file.
 
 The script starts by importing necessary libraries including Selenium, Beautiful Soup, tkinter, openpyxl, os and pyautogui. Then it defines a function formatar_num to format the data scraped from the website. Next, the script gets the current date and prompts the user to input a date range for the data to be scraped, it validates the input dates to ensure the format is correct.
