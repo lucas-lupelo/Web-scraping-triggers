@@ -25,39 +25,24 @@ def formatar_num(num):
         num = str(num).replace(".", ",")
     return num
 
-# definir data de hoje
-agora = datetime.datetime.now()
-data = agora.strftime('%d/%m/%y')
 
-#caixa input datas
+def get_valid_date(prompt):
+    validacao = False
+    while not validacao:
+        date = simpledialog.askstring(prompt, f"Digite a data {prompt} no formato yyyy-mm-dd")
+        if str(date).count("-") == 2:
+            date_parts = str(date).split("-")
+            if len(date_parts) != 3:
+                validacao = False
+            else:
+                if len(date_parts[0]) == 4 and len(date_parts[1]) == 2 and len(date_parts[2]) == 2:
+                    validacao = True
+    return date
+
 root = tk.Tk()
 root.withdraw()
-
-# Recebe data FROM
-validacao_from = False
-while validacao_from == False:
-    input_from = simpledialog.askstring("Data From", "Digite a data FROM no formato yyyy-mm-dd")
-    if str(input_from).count("-") == 2:
-        input_from_validacao = str(input_from).split("-")
-        if len(input_from_validacao) != 3:
-            validacao_from = False
-        else:
-            if len(input_from_validacao[0]) == 4 and len(input_from_validacao[1]) == 2 and len(input_from_validacao[2]) == 2:
-                validacao_from = True
-
-
-# Recebe data UNTIL
-validacao_until = False
-while validacao_until == False:
-    input_until = simpledialog.askstring("Data Until", "Digite a data UNTIL no formato yyyy-mm-dd")
-    if str(input_until).count("-") == 2:
-        input_until_validacao = str(input_until).split("-")
-        if len(input_until_validacao) != 3:
-            validacao_until = False
-        else:
-            if len(input_until_validacao[0]) == 4 and len(input_until_validacao[1]) == 2 and len(input_until_validacao[2]) == 2:
-                validacao_until = True
-
+input_from = get_valid_date("From")
+input_until = get_valid_date("Until")
 root.destroy()
 
 
