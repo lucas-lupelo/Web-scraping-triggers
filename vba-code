@@ -1,0 +1,59 @@
+Read my simple VBA code:
+
+
+Private Sub Workbook_Open()
+    Dim mes_anterior As String
+    Dim mes_atual As String
+    Dim dia As Integer
+    Dim period As String
+    Dim dia_maior As Integer
+    Dim dividido() As String
+    Dim cont As Integer
+    Dim linha As Integer
+    
+    mes_anterior = ""
+    dia_maior = 0
+    cont = 1
+    For linha_bruto = 2 To 300
+        If Worksheets("Dados_brutos").Cells(linha_bruto, 1) = "Initial Jobless Claims" And Worksheets("Dados_brutos").Cells(linha_bruto, 1) <> "" Then
+            cont = cont + 1
+            dividido = Split(Worksheets("Dados_brutos").Cells(linha_bruto, 4), "/")
+            mes_atual = dividido(0)
+            dia = dividido(1)
+            If cont = 2 Then
+                mes_anterior = mes_atual
+            End If
+            If mes_atual <> mes_anterior Then
+                If Worksheets("Dados_brutos").Cells(linha, 4) <> mes_anterior Then
+                    Worksheets("Dados_brutos").Cells(linha, 4) = mes_anterior
+                End If
+                mes_anterior = mes_atual
+                dia_maior = 0
+            Else
+                mes_anterior = mes_atual
+                If dia_maior < dia Then
+                    dia_maior = dia
+                End If
+                linha = linha_bruto
+            End If
+        End If
+    Next
+    If Worksheets("Dados_brutos").Cells(linha, 4) <> mes_anterior Then
+        Worksheets("Dados_brutos").Cells(linha, 4) = mes_anterior
+    End If
+
+
+    For linha_data = 2 To 250
+            For linha_bruto = 2 To 300
+                If Worksheets("Data_extract").Cells(linha_data, 2) = Worksheets("Dados_brutos").Cells(linha_bruto, 1) And Worksheets("Data_extract").Cells(linha_data, 9) = Worksheets("Dados_brutos").Cells(linha_bruto, 4) Then
+                    Worksheets("Data_extract").Cells(linha_data, 3) = Worksheets("Dados_brutos").Cells(linha_bruto, 2) 'actual
+                    Worksheets("Data_extract").Cells(linha_data, 4) = Worksheets("Dados_brutos").Cells(linha_bruto, 3) 'consensus
+                    Worksheets("Data_extract").Cells(linha_data, 8) = Worksheets("Dados_brutos").Cells(linha_bruto, 4) 'period
+                    If Worksheets("Data_extract").Cells(linha_data, 8) <> "" Then
+                        Worksheets("Data_extract").Cells(linha_data, 6) = Worksheets("Dados_brutos").Cells(linha_bruto, 5) 'data
+                    End If
+                    Exit For
+                End If
+            Next
+    Next
+End Sub
